@@ -3,14 +3,15 @@
  *
  * $ npm install @google/generative-ai
  */
-
+import dotenv from "dotenv";
+dotenv.config({ path: "../.env" });
 import {
   GoogleGenerativeAI,
   HarmCategory,
   HarmBlockThreshold,
 } from "@google/generative-ai";
 
-const apiKey = "AIzaSyB7eSxNpNu9a6c9cLxf7chunSVLU6_kacg";
+const apiKey = import.meta.VITE_GEMINI_API_KEY;
 
 const genAI = new GoogleGenerativeAI(apiKey);
 
