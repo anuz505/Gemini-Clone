@@ -22,7 +22,7 @@ This project is a clone of the Gemini AI chat application, built using React and
 
     ```sh
     git clone https://github.com/anuz505/gemini-clone.git
-    cd gemini-clone
+    cd gem-clone
     ```
 
 2. Install the dependencies:
