@@ -6,9 +6,17 @@ export const Context = createContext();
 const ContextProvider = (props) => {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
   const onSent = async (prompt) => {
-    const response = await runChat(prompt);
-    setResult(response);
+    setLoading(true);
+    try {
+      const response = await runChat(prompt);
+      setResult(response);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contextValue = {
@@ -17,6 +25,7 @@ const ContextProvider = (props) => {
     result,
     setResult,
     onSent,
+    loading,
   };
   return (
     <Context.Provider value={contextValue}>{props.children}</Context.Provider>

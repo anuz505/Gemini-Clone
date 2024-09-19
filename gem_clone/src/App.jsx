@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Context } from "./context/context";
 function App() {
-  const { input, setInput, result, onSent } = useContext(Context);
+  const { input, setInput, result, onSent, loading } = useContext(Context);
   function handleClick() {
     onSent(input);
     setInput("");
@@ -15,7 +15,14 @@ function App() {
           onChange={(e) => setInput(e.target.value)}
         />
         <button onClick={handleClick}>Send</button>
-        <div className="result">{result}</div>
+
+        {loading ? (
+          <div>
+            <h1>Loading</h1>
+          </div>
+        ) : (
+          <div className="result">{result}</div>
+        )}
       </div>
     </>
   );
