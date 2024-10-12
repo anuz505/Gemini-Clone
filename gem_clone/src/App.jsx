@@ -6,6 +6,19 @@ function App() {
     onSent(input);
     setInput("");
   }
+  function renderResult() {
+    if (!result) return null;
+
+    return result.split("\n").map((line, index) => {
+      if (line.startsWith("##")) {
+        return <h2 key={index}>{line.replace("##", "").trim()}</h2>;
+      }
+      if (line.startsWith("***")) {
+        return <h2 key={index}>{line.replace("***", "").trim()}</h2>;
+      }
+      return <p key={index}>{line}</p>;
+    });
+  }
   return (
     <>
       <div className="container">
@@ -15,13 +28,12 @@ function App() {
           onChange={(e) => setInput(e.target.value)}
         />
         <button onClick={handleClick}>Send</button>
-
         {loading ? (
           <div>
             <h1>Loading</h1>
           </div>
         ) : (
-          <div className="result">{result}</div>
+          <div className="result">{renderResult()}</div>
         )}
       </div>
     </>
